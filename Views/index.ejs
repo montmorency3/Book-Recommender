@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Recommender</title>
+<style>
+
+
+    h1 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .container{
+    position: relative;
+    border: 3px solid #73AD21;
+    width : 500px;
+    left : 250px;
+    top: 25px;
+    box-shadow: inset;
+    font-weight: bold;
+    font-size: large;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Add shadow for depth */
+  }
+
+  .text-container{
+    position: relative;
+    bottom: 650px;
+    right:300px;    
+    border: 3px solid #73AD21;
+    
+  }
+
+  .image-container {
+        width: 500px; /* Adjust container width as needed */
+        height: 700px; /* Adjust container height as needed */
+        border: 1px solid #ccc;
+        overflow: hidden; /* Ensure image doesn't overflow container */
+        position : relative;
+        left : 900px;
+        bottom: 200px;
+  
+    }
+
+    .image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Adjust to 'contain', 'fill', 'scale-down' as needed */
+
+    }
+
+    .button-container {
+      display:inline-block;
+      margin-left: 45px;
+      margin-right: 30px;
+    }
+
+    input[type="text"]{
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+    }
+
+    label{
+      margin-top: 10px;
+    }
+    
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+    }
+
+    #language{
+      font-size: large;
+    }
+
+  
+
+</style>
+</head>
+<body>
+  
+  <h1> Lets Help you find a book</h1>
+<div class="container">
+  <form id="searchForm" action="/get-result" method="POST">
+        <div class="form-group">
+            <label for="language">Choose a language:</label>
+            <select id="language" name="language">
+                <option value="eng">English</option>
+                <option value="fre">French</option>
+                <option value="spa">Spanish</option>
+                <option value="ger">German</option>
+                <option value="rus">Russian</option>
+                <option value="jpn">Japanese</option>
+                <option value="chi">Chinese</option>
+
+
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="author">Author:</label>
+            <input type="text" id="author" name="author" placeholder="Optional">
+        </div>
+        <div class="form-group">
+            <label for="subjects">Key Words:</label>
+            <input type="text" id="subjects" name="subjects" class="optional" placeholder="Optional">
+        </div>
+        <div class="button-container">
+          <button type="submit" value="search">Search</button>
+        </div>
+        <div class="button-container">
+          <button type="submit" value="random">I'm Feeling Lucky</button>
+          
+      </div>
+    </form>
+</div>
+
+
+<div class="image-container">
+<% if (locals.url){  %>
+    <img src=<%= url %> alt="Image Description">
+    <% } else { %>
+    <img src="https://www.forewordreviews.com/books/covers/error-of-understanding.jpg" alt="Image Description">
+    <%}%>
+</div> 
+
+<div class="text-container">
+  <h1> title: <%= title %></h1>
+  <h1> author: <%= author %></h1>
+</div>
+
+</body>
+</html>
